@@ -1,0 +1,3 @@
+[submodule "rdf-interfaces"]
+	path = rdf-interfaces
+	url = git://github.com/webr3/rdf-interfaces.git
