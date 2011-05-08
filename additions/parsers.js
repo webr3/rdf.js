@@ -1,3 +1,6 @@
+/**
+ * additions/parsers
+ */
 (function(api) {
   if(!api.parsers) { api.parsers = {} }
   api.parsers.u8 = new RegExp("\\\\U([A-F0-9]{8})", "g");
