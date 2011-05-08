@@ -385,10 +385,10 @@ rdf = (function() {
     });
   };
   var _ = new rdf.RDFEnvironment;
-  Object.keys(rdf).forEach(function(k,i,o) {
-    _[k] = o[k];
+  Object.keys(rdf).forEach(function(k) {
+    _[k] = rdf[k];
   });
-  return _;
+  return rdf = _;
 })();
 
 if(module) module.exports = rdf; 
@@ -1311,7 +1311,56 @@ if(module) module.exports = rdf;
         return false;
       }
       return function(t) { return t.p.equals(RDF_TYPE) && t.o.equals(o); }
-    }
+    },
+    constrainedTriple: function() {
+      return function(t) {
+        return (t.s.interfaceName == 'NamedNode' || t.s.interfaceName == 'BlankNode') && t.p.interfaceName == 'NamedNode'
+      }
+    },
+    link: function() {
+      return function(t) {
+        return t.s.interfaceName == 'NamedNode' && t.p.interfaceName == 'NamedNode' && t.o.interfaceName == 'NamedNode'
+      }
+    },
+  };
+  api.filterCount = function(g,f) {
+    var c = 0;
+    g.forEach(function(t) { f(t) && ++c })
+    return c;
+  };
+  api.isOldSchool = function(g) {
+    return g.every(api.filters.constrainedTriple());
+  };
+  api.links = function(g) {
+    return g.filter(api.filters.link());
+  };
+})(rdf);
+(function(api) {
+  api.BaseGraph = api.Graph;
+  api.Graph = function(a) {
+    return Object.defineProperties( new api.BaseGraph(a) , {
+      _distinct: { writable: false, configurable : false, enumerable: false, value: function(a) {
+        var o = new api.Hash;
+        for(i in this._graph)
+          if(!o.exists(this._graph[i][a].h))
+            o.set(this._graph[i][a].h, this._graph[i][a])
+        return o.toArray();
+      }},
+      subjects: { writable: false, configurable : false, enumerable: true, value: function() {
+        return this._distinct('s');
+      }},
+      predicates: { writable: false, configurable : false, enumerable: true, value: function() {
+        return this._distinct('p');
+      }},
+      objects: { writable: false, configurable : false, enumerable: true, value: function() {
+        return this._distinct('o');
+      }},
+      isGround: { writable: false, configurable : false, enumerable: true, value: function() {
+        return this.every(function(t) {
+          return !(t.s.interfaceName == "BlankNode" || t.p.interfaceName == "BlankNode" || t.o.interfaceName == "BlankNode");
+        });
+      }},
+    });
   };
 })(rdf);
 /**

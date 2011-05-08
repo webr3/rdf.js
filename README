@@ -59,8 +59,12 @@ Members:
   rdf.nt(in Graph g)
   rdf.turtle(in Graph g)
   
-  // all filters arguments can be anything, or an array of values to match
+  // general
+  rdf.links(in Graph g)
+  rdf.isOldSchool(in Graph g)
+  rdf.filterCount(in Graph g, in TripleFilter f);
   
+  // all filters arguments can be anything, or an array of values to match
   rdf.filters.s(in any s)  
   rdf.filters.p(in any p)
   rdf.filters.o(in any o)
@@ -70,3 +74,5 @@ Members:
   rdf.filters.spo(in any s, in any p, in any o)
   rdf.filters.describes(in any so)
   rdf.filters.type(in any type)
+  rdf.filters.constrainedTriple()
+  rdf.filters.link()

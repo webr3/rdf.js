@@ -80,6 +80,27 @@
         return false;
       }
       return function(t) { return t.p.equals(RDF_TYPE) && t.o.equals(o); }
-    }
+    },
+    constrainedTriple: function() {
+      return function(t) {
+        return (t.s.interfaceName == 'NamedNode' || t.s.interfaceName == 'BlankNode') && t.p.interfaceName == 'NamedNode'
+      }
+    },
+    link: function() {
+      return function(t) {
+        return t.s.interfaceName == 'NamedNode' && t.p.interfaceName == 'NamedNode' && t.o.interfaceName == 'NamedNode'
+      }
+    },
+  };
+  api.filterCount = function(g,f) {
+    var c = 0;
+    g.forEach(function(t) { f(t) && ++c })
+    return c;
+  };
+  api.isOldSchool = function(g) {
+    return g.every(api.filters.constrainedTriple());
+  };
+  api.links = function(g) {
+    return g.filter(api.filters.link());
   };
 })(rdf);
