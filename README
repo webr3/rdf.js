@@ -1,3 +1,57 @@
 Replacement for rdfa-api library, which is getting mothballed, work in progress.
 
 This will be long term stable..
+
+Classes:
+
+  rdf.BlankNode
+  rdf.NamedNode
+  rdf.Literal
+  rdf.Triple
+  rdf.Graph
+  rdf.TripleAction
+  rdf.PrefixMap
+  rdf.TermMap
+  rdf.Profile
+  rdf.RDFEnvironment
+
+  rdf.Hash
+  rdf.IRI
+  
+  rdf.parsers.NTriples
+  rdf.parsers.Turtle
+  
+  rdf.serializers.NTriples
+  rdf.serializers.Turtle
+
+Members:
+
+  rdf.prefixes
+  rdf.terms
+  rdf.importProfile
+  rdf.setDefaultVocabulary
+  rdf.setDefaultPrefix
+  rdf.setTerm
+  rdf.setPrefix
+  rdf.resolve
+  
+  rdf.createBlankNode
+  rdf.createNamedNode
+  rdf.createLiteral
+  rdf.createTriple
+  rdf.createGraph
+  rdf.createAction
+  rdf.createProfile
+  rdf.createTermMap
+  rdf.createPrefixMap 
+  rdf.createIRI
+  
+  rdf.encodeString
+  
+  rdf.parseNT
+  rdf.processNT
+  rdf.parseTurtle
+  rdf.processTurtle
+  
+  rdf.nt
+  rdf.turtle

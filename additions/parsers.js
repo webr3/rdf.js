@@ -386,5 +386,8 @@
       return s
     }
   };
-
+  api.parseNT = function(doc, cb, base, filter, graph) { return new api.parsers.NTriples(api).parse(doc, cb, base, filter, graph) };
+  api.processNT = function(doc, cb, base, filter) { return new api.parsers.NTriples(api).process(doc, cb, base, filter) };
+  api.parseTurtle = function(doc, cb, base, filter, graph) { return new api.parsers.Turtle(api).parse(doc, cb, base, filter, graph) };
+  api.processTurtle = function(doc, cb, base, filter) { return new api.parsers.Turtle(api).process(doc, cb, base, filter) };
 })(rdf);
