@@ -1,3 +1,6 @@
+/**
+ * additions/iri
+ */
 (function(lib) {
 
   lib.IRI = function(iri) {
