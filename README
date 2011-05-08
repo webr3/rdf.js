@@ -76,3 +76,9 @@ Members:
   rdf.filters.type(in any type)
   rdf.filters.constrainedTriple()
   rdf.filters.link()
+
+Class Extensions
+  rdf.Graph.subjects()
+  rdf.Graph.predicates()
+  rdf.Graph.objects()
+  rdf.Graph.isGround()
