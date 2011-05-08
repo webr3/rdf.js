@@ -63,6 +63,8 @@ Members:
   rdf.links(in Graph g)
   rdf.isOldSchool(in Graph g)
   rdf.filterCount(in Graph g, in TripleFilter f);
+  rdf.ref(in optional DOMString v)
+  rdf.iri(in DOMString iri)
   
   // all filters arguments can be anything, or an array of values to match
   rdf.filters.s(in any s)  
