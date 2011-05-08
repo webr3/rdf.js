@@ -28,30 +28,45 @@ Members:
 
   rdf.prefixes
   rdf.terms
-  rdf.importProfile
-  rdf.setDefaultVocabulary
-  rdf.setDefaultPrefix
-  rdf.setTerm
-  rdf.setPrefix
-  rdf.resolve
   
-  rdf.createBlankNode
-  rdf.createNamedNode
-  rdf.createLiteral
-  rdf.createTriple
-  rdf.createGraph
-  rdf.createAction
-  rdf.createProfile
-  rdf.createTermMap
-  rdf.createPrefixMap 
-  rdf.createIRI
+  rdf.importProfile(in Profile profile, in optional boolean override)
+  rdf.setDefaultVocabulary(in DOMString iri)
+  rdf.setDefaultPrefix(in DOMString iri)
+  rdf.setTerm(in DOMString term, in DOMString iri)
+  rdf.setPrefix(in DOMString prefix, in DOMString iri)
+  rdf.resolve(in DOMString toresolve)
   
-  rdf.encodeString
+  rdf.createBlankNode()
+  rdf.createNamedNode(in DOMString value)
+  rdf.createLiteral(in DOMString value, in optional DOMString? language, in optional NamedNode? datatype)
+  rdf.createTriple(in RDFNode subject, in RDFNode predicate, in RDFNode object)
+  rdf.createGraph(in optional []Triple triples)
+  rdf.createAction(in TripleFilter test, in TripleCallback action)
+  rdf.createProfile(in optional boolean empty)
+  rdf.createTermMap(in optional boolean empty)
+  rdf.createPrefixMap(in optional boolean empty)
+  rdf.createIRI(in DOMString i)
   
-  rdf.parseNT
-  rdf.processNT
-  rdf.parseTurtle
-  rdf.processTurtle
+  rdf.encodeString(in DOMString s)
   
-  rdf.nt
-  rdf.turtle
+  // parse and processing
+  rdf.parseNT(in DOMString toparse, in ParserCallback? callback, in optional DOMString base, in optional TripleFilter filter, in optional Graph graph)
+  rdf.processNT(in DOMString toparse, in ProcessorCallback callback, in optional DOMString base, in optional TripleFilter filter)
+  rdf.parseTurtle(in DOMString toparse, in ParserCallback? callback, in optional DOMString base, in optional TripleFilter filter, in optional Graph graph)
+  rdf.processTurtle(in DOMString toparse, in ProcessorCallback callback, in optional DOMString base, in optional TripleFilter filter)
+  
+  // serializers
+  rdf.nt(in Graph g)
+  rdf.turtle(in Graph g)
+  
+  // all filters arguments can be anything, or an array of values to match
+  
+  rdf.filters.s(in any s)  
+  rdf.filters.p(in any p)
+  rdf.filters.o(in any o)
+  rdf.filters.sp(in any s, in any p)
+  rdf.filters.so(in any s, in any o)
+  rdf.filters.po(in any p, in any o)
+  rdf.filters.spo(in any s, in any p, in any o)
+  rdf.filters.describes(in any so)
+  rdf.filters.type(in any type)

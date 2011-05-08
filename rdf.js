@@ -1303,6 +1303,14 @@ if(module) module.exports = rdf;
         return false;
       }
       return function(t) { return t.s.equals(o) || t.o.equals(o); }
+    },
+    type: function(o) {
+      var RDF_TYPE = api.resolve("rdf:type");
+      if(Array.isArray(o)) return function(t) {
+        for(i in o) if(t.p.equals(RDF_TYPE) && t.o.equals(o[i])) return true;
+        return false;
+      }
+      return function(t) { return t.p.equals(RDF_TYPE) && t.o.equals(o); }
     }
   };
 })(rdf);
