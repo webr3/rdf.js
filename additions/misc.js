@@ -1,3 +1,6 @@
+/**
+ * additions/misc
+ */
 (function(lib) {
   lib.Hash = function(p) { this.empty() };
   lib.Hash.prototype = {
