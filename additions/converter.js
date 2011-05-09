@@ -40,7 +40,7 @@
         case 'object':
           switch(l.constructor.name) {
             case 'Boolean': return this._boolean(l.valueOf());
-            case 'Date': return this._date(l);
+            case 'Date': return this._date(l,r);
             case 'Number': return this._number(l);
           }        
       }
