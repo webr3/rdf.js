@@ -336,7 +336,11 @@
         s = this.skipWS(s.slice(predicate.length));
         s = this.consumeObjectList(s, subject, property);
         cont = s.charAt(0) == ";";
-        if(cont) { s = this.skipWS(s.slice(1)) }
+        if(cont) { 
+          s = this.skipWS(s.slice(1));
+          var next = s.charAt(0);
+          if(next == "." || next == "]") { cont = false }
+        }
       }
       return s
     },
