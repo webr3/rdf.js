@@ -962,7 +962,10 @@ if(module) module.exports = rdf;
         s = this.skipWS(s.slice(predicate.length));
         s = this.consumeObjectList(s, subject, property);
         cont = s.charAt(0) == ";";
-        if(cont) { s = this.skipWS(s.slice(1)) }
+        if(cont) {
+          s = this.skipWS(s.slice(1));
+          if(s.charAt(0) == ".") { cont = false }
+        }
       }
       return s
     },
